@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const nuevoDato = await crud.crear (tabla, req.body);
-        res.estatus(201).json(nuevoDato);
+        res.status(201).json(nuevoDato);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -63,9 +63,9 @@ router.post('/', async (req, res) => {
         res.json(resultado);
     } catch (error) {
         if(error.message.includes('Registro no encontrado')) {
-            res.status(404).json({ error: 'Registro no0 encontrado' });
+            res.status(404).json({ error: 'Registro no encontrado' });
         } else {
-         res.status(500).json({ error: 'Error al eliminar el dato' + error.message });
+            res.status(500).json({ error: 'Error al eliminar el dato' + error.message });
         }
     }
 });
