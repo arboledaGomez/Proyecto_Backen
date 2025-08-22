@@ -1,0 +1,6 @@
+git status
+git add .
+git commit -m "comentario de la versión a subir"
+git config user.name "nombre de usuario de git" (En caso de que lo pida)
+git config user.email "correo de usuario de git" (En caso de que lo pida)
+git push

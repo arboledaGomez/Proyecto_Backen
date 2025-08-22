@@ -20,13 +20,13 @@ class CrudController {
 
     // insertar un nuevo registro
     async crear(tabla, data){
-       try {
+    try {
             const [resultado] = await db.query(`INSERT INTO ?? SET ?`, [tabla, data]);
             return {  ...data,id: resultado.insertId };
         } catch (error) {
             throw error;
         }   
-       
+    
     }
 
     // actualizar un registro por su ID
@@ -34,7 +34,7 @@ class CrudController {
         try {
             const [resultado] = await db.query(`UPDATE ?? SET ? WHERE ?? = ?`, [tabla, data, idcampo, id]);
             if (resultado.affectedRows === 0) {
-                throw new Error('No se encontró el registro para actualizar');
+                throw new Error('Registro no encontrado');
             }
             return await this.obtenerUno(tabla, idcampo, id);
         } catch (error) {
@@ -47,7 +47,7 @@ class CrudController {
         try {
             const [resultado] = await db.query(`DELETE FROM ?? WHERE ?? = ?`, [tabla, idcampo, id]);
             if (resultado.affectedRows === 0) {
-                throw new Error('No se encontró el registro para eliminar');
+                throw new Error('Registro no encontrado');
             }
             return { message: 'Registro eliminado exitosamente' };
         } catch (error) {
